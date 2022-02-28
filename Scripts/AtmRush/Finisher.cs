@@ -6,7 +6,7 @@ public class Finisher : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        AtmRush.Instance.Finish(other.transform);
+       // AtmRush.Instance.Finish(other.transform);
     }
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoSingleton<InputManager>
+public class InputManager : MonoBehaviour
 {
     private static InputManager _instance;
     public GameObject player;
