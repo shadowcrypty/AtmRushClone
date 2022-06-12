@@ -3,37 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
-    private static GameManager _instance;
-    public static GameManager Instance { get { return _instance; } }
+   
     public enum GameStatus
     { failed, win, playing }
-    
-
-    public GameStatus State;
+    public static  GameStatus State=GameStatus.playing;
     private int GameLevel = 0;
     public GameObject player;
     int size;
-
-    private void OnEnable()
-    {
-        _instance = this;
-        _instance.State = GameStatus.playing;
-    }
-    void Start()
-    {
-
-    }
-
+   
     void Update()
     {
-        if (_instance.State ==GameStatus.win)
+        if (State ==GameStatus.win)
         {
             //win condition
             Win();
         }
-        else if (_instance.State == GameStatus.failed)
+        else if (State == GameStatus.failed)
         {
             //lose condition
             Lose();

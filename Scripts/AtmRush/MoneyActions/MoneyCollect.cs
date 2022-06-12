@@ -7,7 +7,6 @@ using UnityEngine;
 public class MoneyCollect : MonoBehaviour, ICollectable
 {
     public static List<Transform> S_Moneys = new List<Transform>();
-    //[SerializeField]
     private static int s_valueOfCart;
 
     public void Collect(Transform collectable)
@@ -44,13 +43,16 @@ public class MoneyCollect : MonoBehaviour, ICollectable
     public void Finish(Transform hit)
     {
         var moneys = S_Moneys;
-        GameManager.Instance.player.tag = "Untagged";
+        
+        ///GameManager.Instance.player.tag = "Untagged";//hatalý
+        
         if (moneys.Contains(hit))
         {
             hit.GetComponent<BoxCollider>().enabled = false;
             moneys.Remove(hit);
             MoneyCounter(hit);// -> observer a aktarýlýcak
             hit.DOMoveX(-3, 1f);
+            Debug.Log("dropped");
         }
         if (moneys.Count==0)
         {
@@ -64,7 +66,7 @@ public class MoneyCollect : MonoBehaviour, ICollectable
     public void A_MoneyElevator()
     {
         GameManager.Instance.player.transform.DOLocalMoveY(s_valueOfCart, s_valueOfCart * 0.1f).SetEase(Ease.Linear).OnComplete(() =>
-               GameManager.Instance.State = GameManager.GameStatus.win);
+               GameManager.State = GameManager.GameStatus.win);
     }
     public void MoneyCounter(Transform hit)
     {

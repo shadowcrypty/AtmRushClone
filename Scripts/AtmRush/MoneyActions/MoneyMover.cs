@@ -13,7 +13,7 @@ public class MoneyMover : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (GameManager.Instance.State == GameManager.GameStatus.playing)
+        if (GameManager.State == GameManager.GameStatus.playing)
         {
             _moveable.Move(player);
         }

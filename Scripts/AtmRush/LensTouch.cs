@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class LensTouch : MonoBehaviour
 {
-    private IUpgradeable upgradeable;
     
-    void Awake()
-    {
-        upgradeable = GetComponent<IUpgradeable>();
-    }
+ 
     private void OnTriggerEnter(Collider other)
     {
-        //AtmRush.Instance.UpgradeMe(other.transform,transform);
-        //upgradeable.Upgrade(other.transform);
-        
-
+        if (other.TryGetComponent(out IUpgradeable upgradeable))
+        {
+            upgradeable.Upgrade();
+        }
     }
 }

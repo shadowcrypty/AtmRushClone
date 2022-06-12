@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonoSingleton<T> : MonoBehaviour where T:MonoSingleton<T>
+public  class MonoSingleton<T> : MonoBehaviour where T:MonoSingleton<T>
 {
-    private MonoSingleton<T> _instance;
-    public MonoSingleton<T> Instance
+    private static volatile T _instance;
+    public static T Instance
     {
         get
         {
@@ -15,10 +15,5 @@ public class MonoSingleton<T> : MonoBehaviour where T:MonoSingleton<T>
             }
             return _instance;
         }
-    }
-
-    private void OnEnable()
-    {
-        _instance = this;
     }
 }

@@ -6,7 +6,13 @@ public class MoneyUpgrade : MonoBehaviour, IUpgradeable
 {
     [SerializeField]
     private Material gold, rub;
-    public void Upgrade(Transform me)
+    Transform me;
+
+    private void OnEnable()
+    {
+        me = transform;
+    }
+    public void Upgrade()
     {
         if (MoneyCollect.S_Moneys == null)
         {

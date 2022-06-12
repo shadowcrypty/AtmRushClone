@@ -6,41 +6,22 @@ using UnityEngine.Events;
 public class Money : MonoBehaviour
 {
     public MoneyUpgradeState CState;
-    /*
-    private IUpgradeable _upgradeable;
-    private IDestroyable _destroyable;
-    private ICollectable _collectable;*/
-    [SerializeField]
-    private UnityEvent _destroy,_upgrade,_collect,_drop;
+    //[SerializeField]
+    private UnityEvent _collect;
 
     private void Awake()
     {
-        CState = MoneyUpgradeState.normal;/*
-        _upgradeable = GetComponent<IUpgradeable>();
-        _destroyable = GetComponent<IDestroyable>();
-        _collectable = GetComponent<ICollectable>();*/
+        CState = MoneyUpgradeState.normal;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Destroyer"))
-        {
-            _destroy.Invoke();
-        }
-        if (other.CompareTag("Upgrader"))
-        {
-            _upgrade.Invoke();
-        }
-        if (other.CompareTag("Finish"))
-        {
-            _drop.Invoke();
-        }
         if (MoneyCollect.S_Moneys.Contains(transform))
         {
             return;
         }
         if (MoneyCollect.S_Moneys.Contains(other.transform) || other.CompareTag("Player"))
         {
-            _collect.Invoke();
+            GetComponent<ICollectable>().Collect(transform);
         }
         
     }

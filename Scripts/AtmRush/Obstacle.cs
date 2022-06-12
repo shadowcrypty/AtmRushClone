@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
-{/*
+{
     private void OnTriggerEnter(Collider other)
     {
-        if (AtmRush.Instance.moneys.Contains(other.transform))
+        if (other.TryGetComponent(out IDestroyable destroyable))
         {
-            //AtmRush.Instance.SeperateList(other.transform);
+            destroyable.Destroyer(other.transform);
 
         }
-    }*/
+    }
 }
